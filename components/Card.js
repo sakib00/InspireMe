@@ -3,15 +3,11 @@ import {StyleSheet, Text, View} from 'react-native';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
 
-const Card = () => {
+const Card = ({autor, quote}) => {
   return (
     <View style={styles.card}>
-      <Text style={styles.textHead}>Author Name</Text>
-      <Text style={styles.textQoute}>
-        "Lorem Ipsum is simply dummy text of the printing and typesetting
-        industry. Lorem Ipsum has been the industry's standard dummy text ever
-        since the 1500s,"
-      </Text>
+      <Text style={styles.textHead}>{autor}</Text>
+      <Text style={styles.textQoute}>"{quote}"</Text>
       <View style={styles.actionBar}>
         <Icon name="heart" size={20} color="#e63946" />
         <Icon2 name="emoticon-excited" size={25} color="#ffd166" />

@@ -1,12 +1,11 @@
 import React from 'react';
-import {StyleSheet, ScrollView} from 'react-native';
-import Card from './components/Card';
+import {StyleSheet, ScrollView, FlatList} from 'react-native';
+import FeaturedList from './components/FeaturedList';
 
 const App = () => {
   return (
     <ScrollView style={styles.background}>
-      <Card />
-      <Card />
+      <FeaturedList />
     </ScrollView>
   );
 };
