@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {View} from 'react-native';
+import {View, StyleSheet, ScrollView} from 'react-native';
 import Card from './Card';
 
 const FeaturedList = () => {
@@ -23,14 +23,19 @@ const FeaturedList = () => {
   });
 
   return (
-    <View>
+    <ScrollView style={styles.background}>
       {quotes.map(quote => (
         <View key={quote._id}>
           <Card autor={quote.author} quote={quote.content} />
         </View>
       ))}
-    </View>
+    </ScrollView>
   );
 };
 
+const styles = StyleSheet.create({
+  background: {
+    backgroundColor: '#a8dadc',
+  },
+});
 export default FeaturedList;

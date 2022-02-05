@@ -1,18 +1,9 @@
 import React from 'react';
-import {StyleSheet, ScrollView, FlatList} from 'react-native';
-import FeaturedList from './components/FeaturedList';
+import {StyleSheet, View} from 'react-native';
+import MainContainer from './navigation/MainContainer';
 
 const App = () => {
-  return (
-    <ScrollView style={styles.background}>
-      <FeaturedList />
-    </ScrollView>
-  );
+  return <MainContainer />;
 };
-const styles = StyleSheet.create({
-  background: {
-    backgroundColor: '#a8dadc',
-  },
-});
 
 export default App;
