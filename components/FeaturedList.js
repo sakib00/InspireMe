@@ -1,5 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import {View, StyleSheet, ScrollView} from 'react-native';
+import {
+  View,
+  StyleSheet,
+  ScrollView,
+  TouchableHighlight,
+  Text,
+} from 'react-native';
+
 import Card from './Card';
 
 const FeaturedList = () => {
@@ -24,6 +31,11 @@ const FeaturedList = () => {
 
   return (
     <ScrollView style={styles.background}>
+      <TouchableHighlight>
+        <View style={styles.button}>
+          <Text style={styles.buttonText}>Add New Quote</Text>
+        </View>
+      </TouchableHighlight>
       {quotes.map(quote => (
         <View key={quote._id}>
           <Card autor={quote.author} quote={quote.content} />
@@ -36,6 +48,20 @@ const FeaturedList = () => {
 const styles = StyleSheet.create({
   background: {
     backgroundColor: '#a8dadc',
+    paddingVertical: 10,
+    paddingHorizontal: 10,
+  },
+  button: {
+    backgroundColor: '#457b9d',
+    paddingVertical: 20,
+    paddingHorizontal: 20,
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: 'transparent',
+  },
+  buttonText: {
+    fontSize: 16,
+    color: 'white',
   },
 });
 export default FeaturedList;

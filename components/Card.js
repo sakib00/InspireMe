@@ -9,7 +9,7 @@ const Card = ({autor, quote}) => {
       <Text style={styles.textHead}>{autor}</Text>
       <Text style={styles.textQoute}>"{quote}"</Text>
       <View style={styles.actionBar}>
-        <Icon name="heart" size={20} color="#e63946" />
+        <Icon name="heart" size={25} color="#e63946" />
         <Icon2 name="emoticon-excited" size={25} color="#ffd166" />
       </View>
     </View>
@@ -19,22 +19,22 @@ const styles = StyleSheet.create({
   card: {
     backgroundColor: 'white',
     borderRadius: 8,
-    paddingVertical: 35,
+    paddingVertical: 45,
     paddingHorizontal: 25,
-    marginHorizontal: 8,
     marginVertical: 10,
     borderColor: '#457b9d',
-    width: '96%',
+    width: '100%',
   },
 
   textHead: {
-    fontSize: 10,
+    fontSize: 14,
     color: '#457b9d',
   },
   textQoute: {
-    fontSize: 14,
+    fontSize: 18,
     color: '#1d3557',
-    padding: 5,
+    paddingVertical: 20,
+    paddingHorizontal: 10,
     fontWeight: '400',
     fontStyle: 'italic',
   },
