@@ -11,6 +11,7 @@ import Ionsicons from 'react-native-vector-icons/dist/Ionicons';
 import FeedScreen from './screens/FeedScreen';
 import FavoriteScreen from './screens/FavoriteScreen';
 import ProfileScreen from './screens/ProfileScreen';
+import FeedStack from './FeedStack';
 
 // * Sceen Names
 const feedName = 'Quotes';
@@ -47,7 +48,11 @@ const MainContainer = () => {
               return <Ionsicons name={iconName} size={size} color={color} />;
             },
           })}>
-          <Tab.Screen name={feedName} component={FeedScreen} />
+          <Tab.Screen
+            name={feedName}
+            options={{headerShown: false}}
+            component={FeedStack}
+          />
           <Tab.Screen name={favoriteName} component={FavoriteScreen} />
           <Tab.Screen name={profileName} component={ProfileScreen} />
         </Tab.Navigator>

@@ -31,11 +31,6 @@ const FeaturedList = () => {
 
   return (
     <ScrollView style={styles.background}>
-      <TouchableHighlight>
-        <View style={styles.button}>
-          <Text style={styles.buttonText}>Add New Quote</Text>
-        </View>
-      </TouchableHighlight>
       {quotes.map(quote => (
         <View key={quote._id}>
           <Card quote={quote} />
