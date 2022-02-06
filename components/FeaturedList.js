@@ -13,6 +13,7 @@ const FeaturedList = () => {
   const [quotes, setQuotes] = useState([]);
 
   const getQuoteRequest = async () => {
+    // Fetch from quotable api
     const url = `https://api.quotable.io/quotes?limit=10`;
 
     const response = await fetch(url);
@@ -27,7 +28,7 @@ const FeaturedList = () => {
 
   useEffect(() => {
     getQuoteRequest();
-  });
+  }, []);
 
   return (
     <ScrollView style={styles.background}>

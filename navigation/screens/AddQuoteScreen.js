@@ -8,11 +8,39 @@ import {
   TouchableHighlight,
 } from 'react-native';
 
-const AddQuoteScreen = () => {
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+const AddQuoteScreen = ({navigation}) => {
   const [quote, setQuote] = useState('');
   const [author, setAuthor] = useState('');
 
-  const pressHandler = () => {};
+  const pressHandler = async () => {
+    try {
+      // Validation for empty quotes
+      if (quote === '' || author === '') {
+        alert('Please fill up the boxes.');
+        return;
+      }
+      let quotes = await AsyncStorage.getItem('quotessss');
+      let quotesArray = [];
+      if (quotes) {
+        quotesArray = JSON.parse(quotes);
+      }
+      quotesArray.push({
+        _id: Math.random().toString(36).substring(2, 7),
+        content: quote,
+        author: author,
+      });
+
+      await AsyncStorage.setItem('quotessss', JSON.stringify(quotesArray));
+      navigation.goBack();
+
+      console.log(quotesArray);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <SafeAreaView style={styles.background}>
       <TextInput
