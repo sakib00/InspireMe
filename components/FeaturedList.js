@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useCallback} from 'react';
 import {
   View,
   StyleSheet,
@@ -8,30 +8,50 @@ import {
 } from 'react-native';
 
 import Card from './Card';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const FeaturedList = () => {
   const [quotes, setQuotes] = useState([]);
+  const [profileQuotes, setProfileQuotes] = useState([]);
 
-  const getQuoteRequest = async () => {
+  const getQuoteStorageRequest = useCallback(async () => {
+    const asyncQuotes = await AsyncStorage.getItem('quotessss');
+
+    const asyncQuotesJson = JSON.parse(asyncQuotes);
+
+    if (asyncQuotesJson) {
+      setProfileQuotes(asyncQuotesJson);
+    }
+  }, []);
+
+  const getQuoteRequest = useCallback(async () => {
     // Fetch from quotable api
-    const url = `https://api.quotable.io/quotes?limit=10`;
+    const url = `https://api.quotable.io/quotes?limit=5`;
 
     const response = await fetch(url);
     const responseJson = await response.json();
 
     if (responseJson.results) {
       setQuotes(responseJson.results);
-    } else {
-      setQuotes([]);
     }
-  };
+  }, []);
 
   useEffect(() => {
+    getQuoteStorageRequest();
     getQuoteRequest();
-  }, []);
+  }, [getQuoteRequest, getQuoteStorageRequest]);
+
+  useEffect(() => {
+    getQuoteStorageRequest();
+  }, [getQuoteStorageRequest, profileQuotes]);
 
   return (
     <ScrollView style={styles.background}>
+      {profileQuotes.map(quote => (
+        <View key={quote._id}>
+          <Card quote={quote} />
+        </View>
+      ))}
       {quotes.map(quote => (
         <View key={quote._id}>
           <Card quote={quote} />

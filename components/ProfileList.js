@@ -21,14 +21,12 @@ const ProfileList = () => {
 
     if (asyncQuotesJson) {
       setProfileQuotes(asyncQuotesJson);
-    } else {
-      setProfileQuotes([]);
     }
   };
 
   useEffect(() => {
     getQuoteRequest();
-  });
+  }, []);
 
   return (
     <ScrollView style={styles.background}>

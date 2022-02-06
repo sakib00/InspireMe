@@ -15,7 +15,7 @@ const Card = ({quote}) => {
     } else {
       setIsFavorited(false);
     }
-  }, []);
+  }, [favorites, quote._id]);
 
   const toggleFavorite = e => {
     e.stopPropagation();

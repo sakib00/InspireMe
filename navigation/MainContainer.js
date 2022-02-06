@@ -14,7 +14,7 @@ import ProfileScreen from './screens/ProfileScreen';
 import FeedStack from './FeedStack';
 
 // * Sceen Names
-const feedName = 'Quotes';
+const feedName = 'Feed';
 const favoriteName = 'Favorite';
 const profileName = 'Profile';
 
