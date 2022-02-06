@@ -1,7 +1,7 @@
 import React from 'react';
 import {Text, View} from 'react-native';
 
-const AddQuote = () => {
+const AddQuoteScreen = () => {
   return (
     <View>
       <Text>Add Quote</Text>
@@ -9,4 +9,4 @@ const AddQuote = () => {
   );
 };
 
-export default AddQuote;
+export default AddQuoteScreen;

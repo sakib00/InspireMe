@@ -38,7 +38,7 @@ const FeaturedList = () => {
       </TouchableHighlight>
       {quotes.map(quote => (
         <View key={quote._id}>
-          <Card autor={quote.author} quote={quote.content} />
+          <Card quote={quote} />
         </View>
       ))}
     </ScrollView>
