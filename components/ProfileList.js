@@ -15,7 +15,7 @@ const ProfileList = () => {
   const [profileQuotes, setProfileQuotes] = useState([]);
 
   const getQuoteRequest = async () => {
-    const asyncQuotes = await AsyncStorage.getItem('quotessss');
+    const asyncQuotes = await AsyncStorage.getItem('quotesssss');
 
     const asyncQuotesJson = JSON.parse(asyncQuotes);
 

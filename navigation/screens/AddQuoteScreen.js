@@ -21,7 +21,7 @@ const AddQuoteScreen = ({navigation}) => {
         alert('Please fill up the boxes.');
         return;
       }
-      let quotes = await AsyncStorage.getItem('quotessss');
+      let quotes = await AsyncStorage.getItem('quotesssss');
       let quotesArray = [];
       if (quotes) {
         quotesArray = JSON.parse(quotes);
@@ -32,7 +32,7 @@ const AddQuoteScreen = ({navigation}) => {
         author: author,
       });
 
-      await AsyncStorage.setItem('quotessss', JSON.stringify(quotesArray));
+      await AsyncStorage.setItem('quotesssss', JSON.stringify(quotesArray));
       navigation.goBack();
 
       console.log(quotesArray);

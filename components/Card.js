@@ -2,11 +2,24 @@ import React, {useContext, useState, useEffect} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
+
 import FavoritesContext from '../state/FavoriteContext';
+
+import Sentiment from 'sentiment';
+
+const analyzer = new Sentiment();
 
 const Card = ({quote}) => {
   const {favorites, setFavorites} = useContext(FavoritesContext);
+  const [sentiment, setSentiment] = useState(0);
+
   const [isFavorited, setIsFavorited] = useState(false);
+
+  useEffect(() => {
+    let str = quote.content;
+    let score = analyzer.analyze(str);
+    setSentiment(score.comparative);
+  }, [quote.content, sentiment]);
 
   useEffect(() => {
     let found = favorites.find(item => item._id === quote._id);
@@ -40,12 +53,34 @@ const Card = ({quote}) => {
           color="#e63946"
           onPress={toggleFavorite}
         />
-        <Icon2 name="emoticon-excited" size={25} color="#ffd166" />
+        {sentiment > 0 && (
+          <View style={styles.flex}>
+            <Text style={{paddingHorizontal: 5}}>Positive</Text>
+            <Icon2 name="emoticon-excited" size={30} color="#ffd166" />
+          </View>
+        )}
+        {sentiment == 0 && (
+          <View style={styles.flex}>
+            <Text style={{paddingHorizontal: 5}}>Neutral</Text>
+            <Icon2 name="emoticon-neutral" size={30} color="lightgray" />
+          </View>
+        )}
+        {sentiment < 0 && (
+          <View style={styles.flex}>
+            <Text style={{paddingHorizontal: 5}}>Negative</Text>
+            <Icon2 name="emoticon-sad" size={30} color="tomato" />
+          </View>
+        )}
       </View>
     </View>
   );
 };
 const styles = StyleSheet.create({
+  flex: {
+    flexDirection: 'row',
+
+    alignItems: 'center',
+  },
   card: {
     backgroundColor: 'white',
     borderRadius: 8,
@@ -69,6 +104,7 @@ const styles = StyleSheet.create({
     fontStyle: 'italic',
   },
   actionBar: {
+    alignItems: 'center',
     paddingHorizontal: 10,
     flex: 1,
     flexDirection: 'row',
